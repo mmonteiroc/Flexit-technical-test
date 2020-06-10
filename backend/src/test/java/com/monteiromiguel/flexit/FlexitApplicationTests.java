@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -71,6 +68,35 @@ class FlexitApplicationTests {
             Employee employee = restTemplate.getForObject(getRootUrl() + "/employee/" + toTest.getIdEmployee(), Employee.class);
             Assert.assertEquals(toTest, employee);
         }
+    }
+
+    /*
+     * We test that if we pass the correct params,
+     * we can create an employee, if we pass wrong
+     * params has to give us an error
+     * */
+    @Test
+    public void testCreateEmployee() {
+        String json = "";
+
+        HttpHeaders headers = new HttpHeaders();
+
+        HttpEntity<String> entity;
+        ResponseEntity<String> response;
+
+
+        // BAD REQUEST - PASAMOS BODY VACIO
+        entity = new HttpEntity<>(json, headers);
+        response = restTemplate.exchange(getRootUrl() + "/employee",
+                HttpMethod.POST, entity, String.class);
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+
+        // OK
+        json = "{'name':'miguel'}";
+        entity = new HttpEntity<>(json, headers);
+        response = restTemplate.exchange(getRootUrl() + "/employee",
+                HttpMethod.POST, entity, String.class);
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
 }
