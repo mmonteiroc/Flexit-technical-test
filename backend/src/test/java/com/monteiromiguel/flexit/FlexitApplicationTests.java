@@ -55,6 +55,10 @@ class FlexitApplicationTests {
         ResponseEntity<String> response = restTemplate.exchange(getRootUrl() + "/employees",
                 HttpMethod.GET, entity, String.class);
 
+
+        /*
+         * Placeholder por ahora
+         * */
         Assert.assertNotNull(response.getBody());
     }
 
