@@ -29,6 +29,11 @@ public class EmployeeManager {
         this.employeeRepository.saveAll(iterableEmployees);
     }
 
+    public void delete(Employee... employees) {
+        Iterable<Employee> iterableEmployees = Arrays.asList(employees);
+        this.employeeRepository.deleteAll(iterableEmployees);
+    }
+
     /*
      * Aqui yo usaria un Set para no tener employees repetidos
      * nunca. Aun asi habria que pasar la List que nos da
