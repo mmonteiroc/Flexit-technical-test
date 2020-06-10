@@ -1,7 +1,9 @@
 package com.monteiromiguel.flexit;
 
 import com.monteiromiguel.flexit.entity.Employee;
+import com.monteiromiguel.flexit.manager.EmployeeManager;
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +16,39 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = FlexitApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class FlexitApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-
     @Autowired
     private TestRestTemplate restTemplate;
 
     @LocalServerPort
     private int port;
 
+    @Autowired
+    private EmployeeManager employeeManager;
+    private List<Employee> allEmployees;
+
+
+    @BeforeEach
+    void loadEmployees() {
+        this.allEmployees = employeeManager.findAll();
+    }
+
+    @Test
+    void contextLoads() {
+    }
+
     private String getRootUrl() {
         return "http://localhost:" + port;
     }
 
     @Test
-    public void testGetAllCars() {
+    public void testGetAllEmployees() {
+        System.out.println("HOLA" + allEmployees);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
@@ -48,10 +62,11 @@ class FlexitApplicationTests {
      * Here we test that we can fetch a single car using its id
      */
     @Test
-    public void testGetCarById() {
-        Employee employee = restTemplate.getForObject(getRootUrl() + "/employee/1", Employee.class);
-        System.out.println(employee);
-        Assert.assertNotNull(employee);
+    public void testFindEmployeeById() {
+        for (Employee toTest : this.allEmployees) {
+            Employee employee = restTemplate.getForObject(getRootUrl() + "/employee/" + toTest.getIdEmployee(), Employee.class);
+            Assert.assertEquals(toTest, employee);
+        }
     }
 
 }
