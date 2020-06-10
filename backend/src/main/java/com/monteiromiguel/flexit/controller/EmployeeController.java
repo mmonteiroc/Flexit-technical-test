@@ -73,7 +73,7 @@ public class EmployeeController {
 
         /*
          * We check we recived all required params
-         * In this case the only required param was idEmploye
+         * In this case the only required param was idEmployee
          * */
 
         if (jsonObject.get("idEmployee") == null) return new ResponseEntity<>("NO ID SENT", HttpStatus.BAD_REQUEST);
@@ -107,12 +107,15 @@ public class EmployeeController {
 
         /*
          * We check we recived all required params
-         * In this case the only required param was idEmploye
+         * In this case the only required param was idEmployee
          * */
 
-        if (jsonObject.get("idEmployee") == null) return new ResponseEntity<>("NO ID SENT", HttpStatus.BAD_REQUEST);
+        if (jsonObject.get("idEmployee") == null)
+            return new ResponseEntity<>("NO ID SENT", HttpStatus.BAD_REQUEST);
+
         Employee employeeToErase = this.employeeManager.findById(jsonObject.get("idEmployee").getAsLong());
-        if (employeeToErase == null) return new ResponseEntity<>("ID NOT EXIST IN OUR SYSTEM", HttpStatus.BAD_REQUEST);
+        if (employeeToErase == null)
+            return new ResponseEntity<>("ID NOT EXIST IN OUR SYSTEM", HttpStatus.BAD_REQUEST);
 
         this.employeeManager.delete(employeeToErase);
         return new ResponseEntity<>("OK", HttpStatus.OK);
