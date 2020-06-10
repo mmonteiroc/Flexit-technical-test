@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Code created by: mmonteiroc
@@ -44,7 +43,7 @@ public class EmployeeManager {
         return this.employeeRepository.findAll();
     }
 
-    public Optional<Employee> findById(Long id) {
-        return this.employeeRepository.findById(id);
+    public Employee findById(Long id) {
+        return this.employeeRepository.findByIdEmployee(id);
     }
 }

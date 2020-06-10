@@ -99,4 +99,68 @@ class FlexitApplicationTests {
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
+
+    @Test
+    public void testUpdateEmploye() {
+        String json = "";
+
+        HttpHeaders headers = new HttpHeaders();
+
+        HttpEntity<String> entity;
+        ResponseEntity<String> response;
+
+
+        // BAD REQUEST - PASAMOS BODY VACIO
+        entity = new HttpEntity<>(json, headers);
+        response = restTemplate.exchange(getRootUrl() + "/employee",
+                HttpMethod.PUT, entity, String.class);
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+
+
+        // BAD REQUEST - NO PASAMOS ID
+        json = "{'name':'miguel'}";
+        entity = new HttpEntity<>(json, headers);
+        response = restTemplate.exchange(getRootUrl() + "/employee",
+                HttpMethod.PUT, entity, String.class);
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+
+        // OK
+        json = "{'name':'" + this.allEmployees.get(0).getName() + "-MOFIDIED', 'idEmployee':" + this.allEmployees.get(0).getIdEmployee() + "}";
+        entity = new HttpEntity<>(json, headers);
+        response = restTemplate.exchange(getRootUrl() + "/employee",
+                HttpMethod.PUT, entity, String.class);
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteEmlpoyee() {
+        String json = "";
+
+        HttpHeaders headers = new HttpHeaders();
+
+        HttpEntity<String> entity;
+        ResponseEntity<String> response;
+
+
+        // BAD REQUEST - PASAMOS BODY VACIO Y SIN ID
+        entity = new HttpEntity<>(json, headers);
+        response = restTemplate.exchange(getRootUrl() + "/employee",
+                HttpMethod.DELETE, entity, String.class);
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+
+
+        // GOOD REQUEST
+        json = "{'idEmployee':" + this.allEmployees.get(0).getIdEmployee() + "}";
+        entity = new HttpEntity<>(json, headers);
+        response = restTemplate.exchange(getRootUrl() + "/employee",
+                HttpMethod.DELETE, entity, String.class);
+
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+
+        int employeesLength = this.allEmployees.size();
+        this.loadEmployees();
+        Assert.assertEquals(employeesLength - 1, this.allEmployees.size());
+
+
+    }
 }

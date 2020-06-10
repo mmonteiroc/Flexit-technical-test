@@ -80,7 +80,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "{" +
                 "idEmployee=" + idEmployee +
                 ", name='" + name + '\'' +
                 ", lastEventDate=" + lastEventDate +

@@ -13,4 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Project: flexit-core
  */
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+    Employee findByIdEmployee(Long id);
 }
