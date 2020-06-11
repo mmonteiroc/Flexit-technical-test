@@ -17,7 +17,7 @@ export class EmployeeListComponent implements OnInit {
 
   async getEmployees() {
     this.employeeList = await fetch(`${environment.API}/employees`).then(x => x.json());
-    this.employeeList.sort((itemA: any, itemB: any): number =>{
+    this.employeeList.sort((itemA: any, itemB: any): number => {
       const dateA = itemA.lastEventDate;
       const dateB = itemB.lastEventDate;
 
@@ -27,7 +27,9 @@ export class EmployeeListComponent implements OnInit {
       * fecha, con lo cual, el es uno de los siguientes
       * a crear el evento
       * */
-      if (!dateA) { return -1; }
+      if (!dateA) {
+        return -1;
+      }
       else if (!dateB) { return 1; }
 
       return moment(dateA).diff(moment(dateB));

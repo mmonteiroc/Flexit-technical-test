@@ -62,6 +62,12 @@ public class EmployeeController {
         Employee employeeToSave = new Employee();
         employeeToSave.setName(jsonObject.get("name").getAsString());
 
+        if (jsonObject.get("lastEventDate") != null && !jsonObject.get("lastEventDate").getAsString().equals("")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+            LocalDate date = LocalDate.parse(jsonObject.get("lastEventDate").getAsString(), formatter);
+            employeeToSave.setLastEventDate(date);
+        }
+
         this.employeeManager.createOrUpdate(employeeToSave);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
