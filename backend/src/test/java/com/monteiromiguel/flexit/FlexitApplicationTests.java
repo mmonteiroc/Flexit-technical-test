@@ -15,6 +15,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+
+
+/*
+* Esta es la primera vez que genero tests para una api rest como tal,
+* es decir, es la primera vez que hago testings a endpoints. Es posible
+* que esta no sea la manera mas optima de hacer testings para endpoints,
+* pero es la primera manera que he podido encontrar que funciona
+* para poder ponerme a picar codigo.
+* */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = FlexitApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
