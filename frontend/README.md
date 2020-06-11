@@ -6,9 +6,13 @@ go to the [readme](https://github.com/mmonteiroc/Flexit-technical-test/blob/mast
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
+Run `ng serve` or `npm run start` for a dev server. Navigate to `http://localhost:4200/`. 
 
-## Build
+
+# Docker
+## Download
+You can find the image of this project at my dockerhub repo or executing ``docker pull mmonteiroc/front-flexit``
+## Or you can build your own image
 Run ``npm i`` to install all the dependencies inside this project.
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
