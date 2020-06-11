@@ -125,11 +125,13 @@ class FlexitApplicationTests {
         Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 
         // OK
-        json = "{'name':'" + this.allEmployees.get(0).getName() + "-MOFIDIED', 'idEmployee':" + this.allEmployees.get(0).getIdEmployee() + "}";
-        entity = new HttpEntity<>(json, headers);
-        response = restTemplate.exchange(getRootUrl() + "/employee",
-                HttpMethod.PUT, entity, String.class);
-        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+        if (this.allEmployees.size() > 0) {
+            json = "{'name':'" + this.allEmployees.get(0).getName() + "-MOFIDIED', 'idEmployee':" + this.allEmployees.get(0).getIdEmployee() + "}";
+            entity = new HttpEntity<>(json, headers);
+            response = restTemplate.exchange(getRootUrl() + "/employee",
+                    HttpMethod.PUT, entity, String.class);
+            Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+        }
     }
 
     @Test
