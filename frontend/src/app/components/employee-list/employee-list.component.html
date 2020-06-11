@@ -1,0 +1,38 @@
+
+<mat-card class="example-card ma-md">
+  <mat-card-header>
+    <mat-card-title>
+      All employees
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="employeeList!=null &&  employeeList.length>0">
+      Next name of the next employee is : {{employeeList[0].name}}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list role="list">
+
+      <mat-list-item *ngFor="let employee of employeeList" class="full-width">
+        <div class="ma-md">
+          Name: {{employee.name}}
+        </div>
+        <div class="ma-md" *ngIf="employee.lastEventDate">
+          Last event date: {{employee.lastEventDate}}
+        </div>
+        <div class="ma-md flex " *ngIf="!employee.lastEventDate">
+          <div class="">
+            There isn't event date:
+          </div>
+
+          <mat-chip-list class="ml-md">
+            <mat-chip color="accent">Can be next one</mat-chip>
+          </mat-chip-list>
+
+        </div>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+
+    </mat-list>
+
+  </mat-card-content>
+</mat-card>
+
