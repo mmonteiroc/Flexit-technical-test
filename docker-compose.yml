@@ -1,0 +1,18 @@
+version: "3"
+services:
+    front:
+        image: front-flexit
+        ports: 
+            - 8888:80
+    back:
+        image: mmonteiroc/test-flexit-back
+        ports: 
+            - 8080:8080
+    bbdd: 
+        image: mysql
+        volumes: 
+            - ./init/:/docker-entrypoint-initdb.d/
+        ports: 
+            - 3306:3306
+        environment: 
+            - MYSQL_ALLOW_EMPTY_PASSWORD=true
