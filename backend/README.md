@@ -27,7 +27,7 @@ Este directorio contiene el backend para la prueba tecnica de flexIT.
    
   **_O tambien se podria generar una imagen nueva de la siguiente manera:_**
    
-   Para generar solo la imagen de backend asegurate de tener las propiedades del `application.properties` configuradas correctamente, como puede ser el nombre de la BBDD. puerto, direccion....
+   Para generar solo la imagen de backend asegurate de tener las propiedades del `application.properties` configuradas correctamente, como puede ser el nombre de la BBDD. puerto, direccion.... (si usaras esta imagen en el compose, no toques la base de datos [url] del properties)
    
    Una vez esta configurado, ejecutamos los siguientes comandos los cuales nos prepararan la imagen de docker y instalarán las dependencias de maven:
    

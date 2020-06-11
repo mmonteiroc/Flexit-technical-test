@@ -17,5 +17,5 @@ Run ``npm i`` to install all the dependencies inside this project.
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
 
-Then just need to execute ```docker build -t front-flexit .  &&  docker run -d -p 80:80 front-flexit`` and you gonna have at http://localhost listening the project of frontend
+Then just need to execute ```docker build -t front-flexit .  &&  docker run -d -p 80:80 front-flexit``` and you gonna have at http://localhost listening the project of frontend
 
