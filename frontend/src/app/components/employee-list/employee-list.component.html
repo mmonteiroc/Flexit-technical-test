@@ -5,9 +5,17 @@
       All employees
     </mat-card-title>
     <mat-card-subtitle *ngIf="employeeList!=null &&  employeeList.length>0">
-      Next name of the next employee is : {{employeeList[0].name}}
+      The name of the next employee is : {{employeeList[0].name}}
     </mat-card-subtitle>
+
   </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="ma-md">
+      The order is from Last event date older to younger so like this we see the next ones upper than the last ones down
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
   <mat-card-content>
     <mat-list role="list">
 
